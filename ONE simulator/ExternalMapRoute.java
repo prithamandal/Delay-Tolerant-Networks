@@ -14,16 +14,20 @@ import core.SettingsError;
  * A route that consists of map nodes.
  */
 public class ExternalMapRoute {
-
+	
 	private List<MapNode> stops;
 	private List<Double> tempTimes;
 	private String nodeID = null;
 	private int index, index1; // index of the previous returned map node
+	/** When does the node first and last appear in the data. 
+	 * It doesn't move or exchange data, if out of range. 
+	 */ 
 	private double activeStart, activeEnd;
 	
 	/**
 	 * Creates a new external map route
-	 * @param stops The stops of this route in a list
+	 * @param stops: The stops of this route in a list
+	 * @param tempTimes: The time in seconds between stops
 	 */
 	public ExternalMapRoute(List<MapNode> stops, List<Double> tempTimes, String nodeID) {
 		assert stops.size() > 0 : "Route needs stops";
@@ -34,6 +38,7 @@ public class ExternalMapRoute {
 		this.index = 0;
 		this.index1 = 1; //node becomes active after the first time.
 		
+		/** Calculate active times. The time it first and last appears in the data */
 		int sum = 0;
 		for (double t : tempTimes) {
 			sum += t;
@@ -62,6 +67,10 @@ public class ExternalMapRoute {
 		return stops.size();
 	}
 	
+	/**
+	 * Returns the stops on this route
+	 * @return the stops on this route
+	 */
 	public List<MapNode> getStops() {
 		return this.stops;
 	}
@@ -81,6 +90,10 @@ public class ExternalMapRoute {
 		return next;		
 	}
 	
+	/**
+	 * Returns the time for the next route
+	 * @return the time for the next route
+	 */
 	public double nextDifTime() {
 		double next = tempTimes.get(index1);
 		index1++;
@@ -93,13 +106,22 @@ public class ExternalMapRoute {
 		return next;
 	}
 	
+	/**
+	 * Returns the time when the node first becomes active
+	 * @return the time when node becomes active
+	 */
 	public double getActiveStart() {
 		return activeStart;
 	}
 	
+	/**
+	 * Returns the last time when the node is active
+	 * @return the time when node becomes inactive
+	 */
 	public double getActiveEnd() {
 		return activeEnd;
 	}
+	
 	
 	public String getNodeID() {
 		return this.nodeID;
@@ -119,8 +141,11 @@ public class ExternalMapRoute {
 	
 	/**
 	 * Reads routes from files defined in Settings
-	 * @param fileName name of the file where to read routes
-	 * @param map SimMap where corresponding map nodes are found
+	 * @param fileName: name of the file where to read routes
+	 * @param timeCol, idCol, xCol, yCol: the columns of the data
+	 * @param timeFormat: Is time in seconds or date format? 
+	 * @param emmMode: mode of the external movement model
+	 * @param map SimMap: where corresponding map nodes are found
 	 * @return A list of ExternalMapRoutes that were read
 	 */
 	public static List<ExternalMapRoute> readRoutes(String fileName, int timeCol, int idCol, int xCol, int yCol, String timeFormat, int emmMode, SimMap map) {

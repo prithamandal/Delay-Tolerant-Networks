@@ -1,3 +1,5 @@
+/** Class used for sorting data by time (date) **/
+
 package input;
 
 import java.util.*;
