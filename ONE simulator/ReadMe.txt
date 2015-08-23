@@ -73,7 +73,6 @@ If the speed is not enough to get at the next stop on time, max speed is used an
 Keep in mind that the whole file is read at the beginning and all the data are kept in memory, 
 so the model might not be suitable for huge files. This is because it accepts unsorted and with no fixed time interval lines.
 
-For bug report, suggestions or modifications you might want to make, feel free to fork from 
-
-or send email at gpapaneof[at]gmail[dot]com
+Feel free to report any bug or make modifications!
+email: gpapaneof[at]gmail[dot]com
 
