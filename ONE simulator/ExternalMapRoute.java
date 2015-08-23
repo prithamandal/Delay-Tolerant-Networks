@@ -1,12 +1,11 @@
 package movement.map;
 
-import input.ExternalMapReader;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import input.ExternalMapReader;
 import core.Coord;
 import core.SettingsError;
 
@@ -18,7 +17,7 @@ public class ExternalMapRoute {
 	private List<MapNode> stops;
 	private List<Double> tempTimes;
 	private String nodeID = null;
-	private int index, index1; // index of the previous returned map node
+	private int index, index1;
 	/** When does the node first and last appear in the data. 
 	 * It doesn't move or exchange data, if out of range. 
 	 */ 
@@ -36,7 +35,7 @@ public class ExternalMapRoute {
 		this.tempTimes = tempTimes;
 		this.nodeID = nodeID;
 		this.index = 0;
-		this.index1 = 1; //node becomes active after the first time.
+		this.index1 = 1; /** node becomes active after the first time */
 		
 		/** Calculate active times. The time it first and last appears in the data */
 		int sum = 0;
@@ -83,16 +82,16 @@ public class ExternalMapRoute {
 		MapNode next = stops.get(index);
 		
 		index++;
-		if (index >= stops.size()) { // reached last stop
-			index = stops.size()-1; // go next to prev to last stop
+		if (index >= stops.size()) { /** reached last stop */
+			index = stops.size()-1; /** go next to prev to last stop */
 		}
 		
 		return next;		
 	}
 	
 	/**
-	 * Returns the time for the next route
-	 * @return the time for the next route
+	 * Returns the time available for the next route
+	 * @return the time available for the next route
 	 */
 	public double nextDifTime() {
 		double next = tempTimes.get(index1);
@@ -104,6 +103,14 @@ public class ExternalMapRoute {
 		}
 		
 		return next;
+	}
+	
+	/**
+	 * Returns the difTimes on this route
+	 * @return the difTimes on this route
+	 */
+	public List<Double> getDifTimes() {
+		return this.tempTimes;
 	}
 	
 	/**
@@ -122,7 +129,10 @@ public class ExternalMapRoute {
 		return activeEnd;
 	}
 	
-	
+	/**
+	 * Returns the node's ID
+	 * @return the node's ID
+	 */
 	public String getNodeID() {
 		return this.nodeID;
 	}
@@ -143,14 +153,15 @@ public class ExternalMapRoute {
 	 * Reads routes from files defined in Settings
 	 * @param fileName: name of the file where to read routes
 	 * @param timeCol, idCol, xCol, yCol: the columns of the data
-	 * @param timeFormat: Is time in seconds or date format? 
+	 * @param timeFormat: Is time in seconds or date format?
+	 * @param startingPoint: the starting time of the simulation
 	 * @param emmMode: mode of the external movement model
 	 * @param map SimMap: where corresponding map nodes are found
 	 * @return A list of ExternalMapRoutes that were read
 	 */
-	public static List<ExternalMapRoute> readRoutes(String fileName, int timeCol, int idCol, int xCol, int yCol, String timeFormat, int emmMode, SimMap map) {
+	public static List<ExternalMapRoute> readRoutes(String fileName, int timeCol, int idCol, int xCol, int yCol, String timeFormat, String startingPoint, int emmMode, SimMap map) {
 		List<ExternalMapRoute> routes = new ArrayList<ExternalMapRoute>();
-		ExternalMapReader reader = new ExternalMapReader(fileName, timeCol, idCol, xCol, yCol, timeFormat, emmMode);
+		ExternalMapReader reader = new ExternalMapReader(fileName, timeCol, idCol, xCol, yCol, timeFormat, startingPoint, emmMode);
 		List<List<Coord>> coords;
 		List<List<Double>> times;
 		List<String> nodesIDs;
@@ -168,7 +179,7 @@ public class ExternalMapRoute {
 		for (List<Coord> l : coords) {			
 			List<MapNode> nodes = new ArrayList<MapNode>();
 			for (Coord c : l) {
-				// make coordinates match sim map data
+				/** make coordinates match sim map data */
 				if (mirror) {
 					c.setLocation(c.getX(), -c.getY());
 				}
