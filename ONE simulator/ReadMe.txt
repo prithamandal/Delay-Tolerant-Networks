@@ -20,8 +20,7 @@ The date format is currently: MM/dd/yy HH:mm
 If you want to change that, edit ExternalMapReader (line 35).
 
 Simulation time starts when the first node appears in the data (earliest time = 0 sec sim time). 
-If you want to start the simulation at an earlier point, use the setting startPoint. It must be less or equal 
-than the earliest time in the input file.
+If you want to start the simulation at an earlier point, use the setting startPoint. It must be less or equal than the earliest time in the input file.
 For the actual times appearing on the file, use Group.startPoint = 0 (when seconds).
 
 		example 1	
@@ -98,13 +97,12 @@ If you want to keep them active until the end of the simulation, edit activeEnd 
 The model -at this point- doesn't use the active times set in the settings file, if exist.
 
 The model has two modes: 0 and 1.
-When mode is 0, the speed for the movement from a location to another is calculated by the the formula: speed = distance/time, 
-where time is the difference between the timestamps of the locations.
+When mode is 0, the speed for the movement from a location to another is calculated by the the formula: speed = distance/time, where time is the difference between the timestamps of the locations.
 In mode 1, the speed given in the settings is used and the rest of the time (if any) is used as a wait time at the last location.
 If the speed is not enough to get at the next stop on time, max speed is used and if again not enough, the simulation throws an error.
 
-Keep in mind that the whole file is read at the beginning and all the data are kept in memory, 
-so the model might not be suitable for huge files. This is because it accepts unsorted and with no fixed time interval lines.
+Keep in mind that the whole file is read at the beginning and all the data are kept in memory, so the model might not be suitable for huge files. 
+This is because it accepts unsorted and with no fixed time interval lines.
 
 Feel free to report any bug or make modifications!
 email: gpapaneof[at]gmail[dot]com
