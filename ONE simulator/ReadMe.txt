@@ -24,38 +24,72 @@ If you want to start the simulation at an earlier point, use the setting startPo
 than the earliest time in the input file.
 For the actual times appearing on the file, use Group.startPoint = 0 (when seconds).
 
-		example 1									||		example 2
-		-----------------							||		-----------------
-		no starting point 							||		startPoint =  5/3/11 20:37
-			&&										||			&&
-		time, node, x, y							||		time, node, x, y
-		-----------------							||		-----------------
-		5/3/11 20:40, 0, 100, -100					||		5/3/11 20:40, 0, 100, -100
-		5/3/11 20:45, 1, 200, 0						||		5/3/11 20:45, 1, 200, 0
-		5/3/11 20:39, 2, 50, 150					||		5/3/11 20:39, 2, 50, 150
-			=> 	starting point = 5/3/11 20:39 		||			=> 	starting point = 5/3/11 20:37 
-				sim time (seconds):					||				sim time (seconds):
-				0: node 2 at (50, 150)				||				2: node 2 at (50, 150)
-				1: node 0 at (100, -100)			||				3: node 0 at (100, -100)
-				6: node 1 at (200, 0) 				||				8: node 1 at (200, 0)
-		------------------------------------		||		------------------------------------
+		example 1	
+		-----------------
+		no starting point
+			&&
+		time, node, x, y
+		-----------------
+		5/3/11 20:40, 0, 100, -100
+		5/3/11 20:45, 1, 200, 0
+		5/3/11 20:39, 2, 50, 150
+			=> 	starting point = 5/3/11 20:39
+				sim time (seconds):
+				0: node 2 at (50, 150)
+				1: node 0 at (100, -100)
+				6: node 1 at (200, 0)
+		------------------------------------
 		
 		
-		example 3									||		example 4
-		-----------------							||		-----------------
-		no starting point							||		startPoint =  0
-			&&										||			&&
-		time, node, x, y							||		time, node, x, y
-		-----------------							||		-----------------
-		1, 0, 100, -100								||		1, 0, 100, -100
-		5, 1, 200, 0								||		5, 1, 200, 0
-		2, 2, 50, 150								||		2, 2, 50, 150
-			=> 	starting point = 1					||			=> 	starting point = 0
-				sim time (seconds):					||				sim time (seconds):
-				0: node 0 at (100, -100)			||				1: node 0 at (100, -100)
-				1: node 2 at (50, 150)				||				2: node 2 at (50, 150)
-				4: node 1 at (200, 0) 				||				5: node 1 at (200, 0)
-		------------------------------------		||		------------------------------------
+		example 2
+		-----------------
+		startPoint =  5/3/11 20:37
+			&&
+		time, node, x, y
+		-----------------
+		5/3/11 20:40, 0, 100, -100
+		5/3/11 20:45, 1, 200, 0
+		5/3/11 20:39, 2, 50, 150
+			=> 	starting point = 5/3/11 20:37 
+				sim time (seconds):
+				2: node 2 at (50, 150)
+				3: node 0 at (100, -100)
+				8: node 1 at (200, 0)
+		------------------------------------
+		
+		
+		example 3
+		-----------------
+		no starting point
+			&&
+		time, node, x, y
+		-----------------
+		1, 0, 100, -100
+		5, 1, 200, 0
+		2, 2, 50, 150
+			=> 	starting point = 1
+				sim time (seconds):
+				0: node 0 at (100, -100)
+				1: node 2 at (50, 150)
+				4: node 1 at (200, 0)
+		------------------------------------
+		
+		
+		example 4
+		-----------------
+		startPoint =  0
+			&&
+		time, node, x, y
+		-----------------
+		1, 0, 100, -100
+		5, 1, 200, 0
+		2, 2, 50, 150
+			=> 	starting point = 0
+				sim time (seconds):
+				1: node 0 at (100, -100)
+				2: node 2 at (50, 150)
+				5: node 1 at (200, 0)
+		------------------------------------
 		
 		
 All the nodes are initially on the map at their first position,
