@@ -8,13 +8,12 @@ input: 	ExternalMapReader.java
 		
 Compile!
 
-The input files must be in the format of comma separated columns. If you want to change the separator, 
-edit ExternalMapReader (line 110). There must be at least four columns: node id, time, x, y. If not in this order,
-set the right column numbers (starting from 0) using idCol, timeCol, xCol, yCol settings. If more columns exist,
-they are ignored.
+The input files must be in the format of comma separated columns. If you want to change the separator, edit ExternalMapReader (line 109). 
+There must be at least four columns: node id, time, x, y. If not in this order, set the right column numbers (starting from 0) using idCol, timeCol, xCol, yCol settings. 
+If more columns exist, they are ignored.
 
-Code assumes no header in the file. If you have one, you should uncomment line 100 in ExternalMapReader.
-Empy and comment lines are skipped. Comment prefix is currently "#" and is set at line 30 of ExternalMapReader.
+Code assumes no header in the file. If you have one, you should uncomment line 99 in ExternalMapReader.
+Empy and comment lines are skipped. Comment prefix is currently "#" and is set at line 32 of ExternalMapReader.
 
 Time column can be either in date format or in seconds (or epochs). Use inputTimeFormat setting to set "date" or "sec".
 The date format is currently: MM/dd/yy HH:mm
