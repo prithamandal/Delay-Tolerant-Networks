@@ -75,4 +75,3 @@ so the model might not be suitable for huge files. This is because it accepts un
 
 Feel free to report any bug or make modifications!
 email: gpapaneof[at]gmail[dot]com
-
