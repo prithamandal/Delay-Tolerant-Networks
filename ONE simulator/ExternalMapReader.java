@@ -5,21 +5,20 @@ import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.NumberFormatException;
 import java.util.*;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import core.Coord;
 import core.SettingsError;
-
-import java.util.Comparator;
-import java.lang.NumberFormatException;
 
 /**
  * Class for reading the external movement file in the format of comma separated columns.
