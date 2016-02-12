@@ -119,6 +119,7 @@ public class ExternalMapReader {
 				dataRow = reader.readLine();
 				row++;
 			}
+			reader.close();
 		} catch (IOException ioe){
 			throw new SettingsError("Couldn't read ExternalMapRoute-data file " + 
 					fileName + 	" (cause: " + ioe.getMessage() + ")");
