@@ -21,7 +21,7 @@ If you want to change that, edit ExternalMapReader (line 35).
 
 Simulation time starts when the first node appears in the data (earliest time = 0 sec sim time). 
 If you want to start the simulation at an earlier point, use the setting startPoint. It must be less or equal than the earliest time in the input file.
-For the actual times appearing on the file, use Group.startPoint = 0 (when seconds).
+For the actual times appearing in the file, use Group.startPoint = 0 (when seconds).
 
 		example 1	
 		-----------------
